@@ -45,6 +45,7 @@ class Forecast():
       key = days + 2
       output_dict = {}
       for day in range(2, key):
+         print day
          loopday = soup.findChildren("forecastday")[day]
 
          # Initialize the dictionary.
@@ -61,9 +62,8 @@ class Forecast():
             if unicode == True:
                day_dict["low"]["fahrenheit"] += "°"
                day_dict["low"]["celsius"] += "°"
-
-         return day_dict
+      return output_dict
 
 
 a = Forecast("New York, NY")
-print a.RetrieveForecast(unicode=False)
+print a.RetrieveForecast(unicode=False, days=3)
