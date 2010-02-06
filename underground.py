@@ -35,12 +35,35 @@ class Forecast():
             }
           }
 
-          If unicode is True, display °'s with temperatures, thus
-          returning them as strings instead of integers.
+          If unicode is True, display °'s with temperatures, but
+          temperature is *always* returned as a string.
       """
       urlobject = self.GetXMLForecast()
       soup = BeautifulStoneSoup(urlobject)
-      print(soup.prettify())
+      if days > 6:
+         raise "You're requestion too many days. Days must be <= 6."
+      key = days + 2
+      output_dict = {}
+      for day in range(2, key):
+         loopday = soup.findChildren("forecastday")[day]
+
+         # Initialize the dictionary.
+         day_dict = output_dict[int(loopday.period.string)] = {}
+         if low == True:
+            lowf = int(loopday.low.fahrenheit.string)
+            lowc = int(loopday.low.celsius.string)
+
+            day_dict["low"] = {
+                  "fahrenheit": str(lowf),
+                  "celsius": str(lowc)
+            }
+
+            if unicode == True:
+               day_dict["low"]["fahrenheit"] += "°"
+               day_dict["low"]["celsius"] += "°"
+
+         return day_dict
+
 
 a = Forecast("New York, NY")
-a.RetrieveForecast()
+print a.RetrieveForecast(unicode=False)
