@@ -1,0 +1,28 @@
+To use this class/module you need BeautifulSoup ('s BeautifulStoneSoup).
+For debugging stuff, I use marcbelmont's python-print_r,
+  found here: http://github.com/marcbelmont/python-print_r
+  This makes things easier when dealing with embedded dicts like we are.
+
+
+The class should work something like this:
+   >>> import underground
+   >>> weather = underground.Forecast("New York, NY").RetrieveForecast(unicode=False)
+   >>> weather
+   {'low': {'fahrenheit': '18', 'celsius': '-8'}}
+
+   >>> from print_r import print_r # (http://github.com/marcbelmont/python-print_r)
+   >>> print_r(weather)
+   low = <type 'dict'>
+       celsius = -8
+       fahrenheit = 18
+
+Note, this is a very new lib that I'm making for two purposes:
+   1) To make it easy to grab data to generate dynamic weather images
+      using PIL for a friend's project in TV Studio Class.
+   2) To learn BeautifulSoup better, because it's a great library,
+      I just don't know how to use it well yet.
+
+Because this library (PyUnderground) is so new, it doesn't do much yet.
+As of the next commit, fahrenheit/celsius *low* temperatures should work,
+for any number of days in a forecast, 1-6.
+
