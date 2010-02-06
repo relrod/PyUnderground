@@ -41,7 +41,7 @@ class Forecast():
       urlobject = self.GetXMLForecast()
       soup = BeautifulStoneSoup(urlobject)
       if days > 6:
-         raise "You're requestion too many days. Days must be <= 6."
+         raise "You've requested too many days. Days must be <= 6."
       key = days + 2
       output_dict = {}
       for day in range(2, key):
