@@ -49,6 +49,8 @@ class Forecast():
 
          # Initialize the dictionary.
          day_dict = output_dict[int(loopday.period.string)] = {}
+         day_dict["epoch"] = int(loopday.date.epoch.string)
+
          if low == True:
             lowf = int(loopday.low.fahrenheit.string)
             lowc = int(loopday.low.celsius.string)
@@ -80,3 +82,4 @@ class Forecast():
 
 a = Forecast("New York, NY")
 print a.RetrieveForecast(unicode=True, days=3)[1]['low']['fahrenheit']
+print a.RetrieveForecast(unicode=True, days=3)[1]['epoch']
