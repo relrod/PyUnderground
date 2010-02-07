@@ -76,6 +76,10 @@ class Forecast():
             if unicode == True:
                day_dict["high"]["fahrenheit"] += "°"
                day_dict["high"]["celsius"] += "°"
+
+         if conditions == True:
+            conditions = str(loopday.conditions.string)
+            day_dict["conditions"] = conditions
  
       return output_dict
 
@@ -83,3 +87,4 @@ class Forecast():
 a = Forecast("New York, NY")
 print a.RetrieveForecast(unicode=True, days=3)[1]['low']['fahrenheit']
 print a.RetrieveForecast(unicode=True, days=3)[1]['epoch']
+print a.RetrieveForecast(unicode=True, days=3)[1]['conditions']
